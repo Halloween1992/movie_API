@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 
 import MoviesList from "./components/MoviesList.jsx";
 import "./App.css";
@@ -7,7 +7,6 @@ import SearchMovie from "./components/SearchMovie";
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const searchMovieHandler = async (movie) => {
     setIsLoading(true);
@@ -21,10 +20,7 @@ function App() {
       const data = await res.json();
 
       setMovies(data.results);
-      console.log(data);
-      console.log("Searched for:", movie);
     } catch (error) {
-      setError(error.message);
       console.log(error);
     }
     setIsLoading(false);
